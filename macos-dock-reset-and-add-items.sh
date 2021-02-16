@@ -10,7 +10,7 @@
 #   Prerequisite:  dockutil
 #         Author:  Jens Malessa
 #        Created:  2021-02-15
-#  Last Modified:  2021-02-15
+#  Last Modified:  2021-02-16
 #        Version:
 #        Credits:  https://github.com/kcrawford/dockutil
 #                  https://www.jamf.com/jamf-nation/discussions/24584/need-help-forcing-script-to-run-commands-under-current-logged-on-user#responseChild148637
@@ -91,6 +91,10 @@ done
 
 # -- add Dock items with dockutil -----------------------------------------------
 
+# add spacer before custom items
+/usr/local/bin/dockutil -v  --add '' --type spacer --section apps --after "System Preferences" --no-restart /Users/"$loggedInUser"/Library/Preferences/com.apple.dock.plist
+
+# add dock items
 for app_path in "${dock_items_app_path[@]}"
 do
   # add dock item to users dock
