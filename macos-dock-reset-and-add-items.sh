@@ -54,7 +54,7 @@ if [[ "$loggedInUser" != "root" ]] || [[ "$loggedInUID" -ne 0 ]]; then
 	echo "Finished Dock reset for user $loggedInUser"
 
 else
-    echo "No user logged in. Can't run as user, so exiting"
+	echo "No user logged in. Can't run as user, so exiting"
 	exit 0
 fi
 
@@ -66,14 +66,14 @@ fi
 while [ ! -e /Users/"$loggedInUser"/Library/Preferences/com.apple.dock.plist ]
 do
 	sleep 1
-  echo dock.plist not there
+	echo dock.plist not there
 done
 
 # is mod_count key present?
 while [ -z "$mod_count" ]
 do
 	sleep 1
-  mod_count=$(/usr/bin/su -l "$loggedInUser" -c "defaults read com.apple.dock mod-count")
+	mod_count=$(/usr/bin/su -l "$loggedInUser" -c "defaults read com.apple.dock mod-count")
 done
 
 # is mod_count greater 2?
@@ -83,7 +83,7 @@ while [ "$mod_count" -lt 2 ]
 do
 	sleep 1
 	mod_count=$(/usr/bin/su -l "$loggedInUser" -c "defaults read com.apple.dock mod-count")
-  echo mod_count="$mod_count"
+	echo mod_count="$mod_count"
 done
 
 
@@ -96,7 +96,7 @@ done
 # add dock items
 for app_path in "${dock_items_app_path[@]}"
 do
-  # add dock item to users dock
+	# add dock item to users dock
 	/usr/local/bin/dockutil -v --add "$app_path" --no-restart /Users/"$loggedInUser"/Library/Preferences/com.apple.dock.plist
 done
 
