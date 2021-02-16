@@ -63,7 +63,6 @@ fi
 # -- Test if Dock is ready for dockutil -----------------------------------------
 
 # is dock.plist created?
-# echo $(test ! -e /Users/$loggedInUser/Library/Preferences/com.apple.dock.plist) $?
 while [ ! -e /Users/"$loggedInUser"/Library/Preferences/com.apple.dock.plist ]
 do
 	sleep 1
